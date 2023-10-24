@@ -1,6 +1,6 @@
 # Modelling language usage and listener engagement in Podcasts
 
-![alt text](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.capterra.com.br%2Fblog%2F2675%2Fcriacao-podcast&psig=AOvVaw2mzhzRtbKse87BGOs--8zB&ust=1698248358662000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMDBzaSCj4IDFQAAAAAdAAAAABAf)
+![alt text](https://github.com/ivapezo/podcast-engagement/blob/main/criacao-podcast-BR-Capterra-Header.png)
 
 
 ### Goal of the project
