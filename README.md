@@ -1,16 +1,17 @@
-# Modelling language usage and listener engagement in Podcasts
+# Modelling language usage and listener engagement in TED Talks
 
 ![alt text](https://github.com/ivapezo/podcast-engagement/blob/main/criacao-podcast-BR-Capterra-Header.png)
 
 
 ### Goal of the project
 
-What contributes to the broad appeal of a podcast? Is it the host's upbeat and positive energy that captures the audience's attention, or does a rich and profound vocabulary play a crucial role? We all have our individual assumptions and preferences regarding what makes a podcast successful and beloved. In this project, linguistic factors are investigated, leveraging the written descriptions of the show and episode as well as the audio transcript of the episode.
+What contributes to the broad appeal of a TED talk? Is it the speakers's upbeat and positive energy that captures the audience's attention, or does a rich and profound vocabulary play a crucial role? We all have our individual assumptions and preferences regarding what makes a talk successful and beloved. In this project, linguistic factors are investigated, leveraging the written descriptions of the talk as well as its audio transcript.
 
-The primary objective of this project is to explore how various elements of a podcast, including vocabulary diversity, distinctiveness, emotion, and syntax, relate to user engagement. The goal is to develop models using different textual representations and identify which features are predictive of engagement - the characteristics that keep people listening to podcasts.
+The primary objective of this project is to explore how various elements of a TED talk, including vocabulary diversity, distinctiveness, emotion, and syntax, relate to user engagement. The goal is to develop models using different textual representations and identify which features are predictive of engagement - the characteristics that keep people listening.
 
-The project is inspired by this paper from 2021, where the authors use a logistic regression classifier with different representations of the content, and two neural classifiers - a feedforward neural network with a single hidden layer, and the pre-trained BERT. 
+The project is inspired by this paper from 2021, where the authors use a logistic regression classifier with different representations of the content, and two neural classifiers - a feedforward neural network with a single hidden layer, and the pre-trained BERT to predict listener engagement in podcasts. 
 My goal is to develop and surpass the best performances from the paper using the current state-of-the-art language models.
+
 
 ### The data 
 The dataset includes around 200k podcasts filtered for English and Portuguese content. Episodes vary in audio quality, topics, and structural formats due to a mix of professional and amateur content. The dataset contains both the audio and the transcripts of the episodes.
