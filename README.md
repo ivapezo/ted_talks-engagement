@@ -1,6 +1,6 @@
 # Modelling language usage and listener engagement in TED Talks
 
-![alt text](https://github.com/ivapezo/podcast-engagement/blob/main/criacao-podcast-BR-Capterra-Header.png)
+![alt text](https://github.com/ivapezo/podcast-engagement/blob/main/workfile-1.png)
 
 
 ### Goal of the project
