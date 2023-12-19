@@ -1,5 +1,5 @@
 # Predicting popularity and audience engagement in TED talks based on language usage
-![alt text](https://github.com/ivapezo/podcast-engagement/blob/main/workfile-1.png)
+![alt text](https://github.com/ivapezo/podcast-engagement/blob/main/data/workfile-1.png)
 
 ### The goals of the project
 What contributes to the broad appeal of a TED talk? Is it the speakers's upbeat and positive energy that captures the audience's attention, or does a rich and profound vocabulary play a crucial role? While we all have our personal assumptions and preferences regarding the factors that make a talk successful and beloved, this project delves into the linguistic aspects present in the transcripts to unravel the nuances that contribute to a talk's impact and resonance.
