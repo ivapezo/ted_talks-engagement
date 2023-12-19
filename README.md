@@ -1,45 +1,51 @@
-# Modelling language usage and listener engagement in TED Talks
-
+# Predicting popularity and audience engagement in TED talks based on language usage
 ![alt text](https://github.com/ivapezo/podcast-engagement/blob/main/workfile-1.png)
 
+### The goals of the project
+What contributes to the broad appeal of a TED talk? Is it the speakers's upbeat and positive energy that captures the audience's attention, or does a rich and profound vocabulary play a crucial role? While we all have our personal assumptions and preferences regarding the factors that make a talk successful and beloved, this project delves into the linguistic aspects present in the transcripts to unravel the nuances that contribute to a talk's impact and resonance.
 
-### Goal of the project
+The primary objective of this project is to explore how various elements of a TED talk, including vocabulary diversity, distinctiveness, emotion, and syntax, relate to user engagement. The goal is to develop models using different textual representations and identify which features are predictive of popularity and engagement - the characteristics that keep people listening.
 
-What contributes to the broad appeal of a TED talk? Is it the speakers's upbeat and positive energy that captures the audience's attention, or does a rich and profound vocabulary play a crucial role? We all have our individual assumptions and preferences regarding what makes a talk successful and beloved. In this project, linguistic factors are investigated, leveraging the written descriptions of the talk as well as its audio transcript.
+### Approaches and baselines
+Two main approaches for predicting popularity and engagement are:
 
-The primary objective of this project is to explore how various elements of a TED talk, including vocabulary diversity, distinctiveness, emotion, and syntax, relate to user engagement. The goal is to develop models using different textual representations and identify which features are predictive of engagement - the characteristics that keep people listening.
+1. Classical machine learning models: This approach relies on linguistic features extracted from the transcripts, employing traditional machine learning models to make predictions.
 
-The project is inspired by this paper from 2021, where the authors use a logistic regression classifier with different representations of the content, and two neural classifiers - a feedforward neural network with a single hidden layer, and the pre-trained BERT to predict listener engagement in podcasts. 
-My goal is to develop and surpass the best performances from the paper using the current state-of-the-art language models.
+2. Pre-trained BERT model: The second approach involves utilizing a pre-trained BERT model for predictions based on the content of the transcripts leveraging the power of contextualized language representations to enhance predictive accuracy.
 
+
+This project draws inspiration from a 2021 [paper](https://aclanthology.org/2021.acl-long.52.pdf), where the authors employed various classifiers, including logistic regression with different content representations and two neural classifiers—a single-hidden-layer feedforward neural network and the pre-trained BERT model. The focus was on predicting listener engagement in both Spotify podcasts and TED talks. The aim of this project is not only to replicate but also to surpass the best performances reported in the paper by leveraging the advancements in state-of-the-art language models.
+
+In the original paper, the highest accuracy achieved for predicting engagement in TED talks using linguistic features and a logistic regression model was 71.15%. Furthermore, the best overall accuracy, reaching 71.92%, was attained with the utilization of pre-trained BERT. This project aims to push beyond these benchmarks by leveraging the latest advancements in language model technologies.
 
 ### The data 
-The dataset includes around 200k podcasts filtered for English and Portuguese content. Episodes vary in audio quality, topics, and structural formats due to a mix of professional and amateur content. The dataset contains both the audio and the transcripts of the episodes.
-Only the English content is used.
-The access to the Spotify Podcasts Dataset needs to be requested.
 
-- https://podcastsdataset.byspotify.com/
+The datasets contain information about all audio-video recordings of TED Talks uploaded to the official TED.com website until September 21st, 2017. The TED main dataset contains information about all talks including number of views, number of comments, descriptions, speakers and titles. The TED transcripts dataset contains the transcripts for all talks available on TED.com.
 
+- https://www.kaggle.com/datasets/rounakbanik/ted-talks?select=ted_main.csv
 
 ### Relevant scientific papers
 * Modeling Language Usage and Listener Engagement in Podcasts
   * https://aclanthology.org/2021.acl-long.52.pdf
     * The paper used for inspiration 
-* 100,000 Podcasts: A Spoken English Document Corpus
-  * https://aclanthology.org/2020.coling-main.519.pdf
-* Mapping the factors that determine engagement in podcasting: design from the users and podcasters experience
-  * https://www.researchgate.net/publication/340975155_Mapping_the_factors_that_determine_engagement_in_podcasting_design_from_the_users_and_podcasters'experience
-
+* Predicting TED Talk Ratings from Language and Prosody
+  * [https://aclanthology.org/2020.coling-main.519.pdf](https://arxiv.org/abs/1906.03940)
+* Language that Captivates the Audience
+  * https://aclanthology.org/2021.wassa-1.2.pdf
 
 
 ### Work-breakdown 
 
 Task  | Effort in hours
 ------------- | -------------
-Data collection | 2 weeks +
-Data preprocessing & Engagement metric calculation | 30h
-Topic classification | 15h
-Linguistic Features determination | 20h
-Models and analysis | 20h
-Building an application | 10h
-Report & final presentation | 10h
+Data collection | 2 weeks + (waiting for a response from Spotify)
+Research around linguistic features | 12h
+Data exploration & defining target variables | 12h
+Linguistic features determination | 15h
+Predictions with linguistic features | 10h
+Predictions with BERT | 30h
+Finalisation & Report | 5h
+
+### Results
+
+The best accuracies of 90% (for popularity prediction) and 80% (for engagement prediction) were achieved using solely linguistic features on the complete dataset. However, due to class imbalance present in the dataset, an F1-score of 77% (for popularity prediction) and 52% (for engagement prediction) were achieved. In order to obtain higher precision and recall, we balance the dataset and then get 85% accuracy and 86% F1-score for popularity and 81% accuracy and 82% F1-score for engagement prediction.
