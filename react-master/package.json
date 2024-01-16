@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "lint": "next lint"
+=======
+    "lint": "next lint",
+    "api": "cd ./app/api && python index.py"
+>>>>>>> 09256aa7aa4d3d9cb23b67aace88cf02a9b0e3e9
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
