@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@fseehawer/react-circular-slider": "^2.6.4",
     "canvas-confetti": "^1.9.2",
     "colormap": "^2.3.2",
     "d3-scale-chromatic": "^3.0.0",
@@ -14,7 +13,6 @@
     "python-shell": "^5.0.0",
     "react": "^18.2.0",
     "react-confetti-explosion": "^2.1.2",
-    "react-ranger": "^2.1.0",
     "react-type-animation": "^3.2.0",
     "styled-components": "^6.1.8",
     "transformers": "^3.1.0",
