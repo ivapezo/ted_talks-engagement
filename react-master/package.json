@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "npm run prepare && next build",
+    "vercel-build": "npm run && next build",
     "api": "cd ./app/api && python index.py"
   },
   "dependencies": {
