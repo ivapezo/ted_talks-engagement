@@ -44,6 +44,7 @@ Data exploration & defining target variables | 12h
 Linguistic features determination | 15h
 Predictions with linguistic features | 10h
 Predictions with BERT | 30h
+Web app developement and deployment | 35h
 Finalisation & Report | 5h
 
 ### Results
