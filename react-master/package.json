@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm install flask && cd ./app/api && python3 index.py",
+    "build": "next build && pip install flask && cd ./app/api && python3 index.py",
     "start": "next start",
     "lint": "next lint",
     "deploy": "npm run build && npm install flask && cd ./app/api && python3 index.py"
