@@ -1,6 +1,7 @@
 import './css/style.css'
 
 import { Inter, Architects_Daughter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react';
 
 import Banner from '@/components/banner'
 
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
           <Banner />
         </div>
+        <Analytics />
       </body>
     </html>
   )

@@ -7,7 +7,8 @@ export default function Verdict({ fetchedData }: { fetchedData: any }) {
   const [like, setLike] = useState<number | null>(null);
   const [popularPrediction, setPopularPrediction] = useState<Array<number> | null>(null);
   const [engagingPrediction, setEngagingPrediction] = useState<Array<number> | null>(null);
-
+  const [animationText, setAnimationText] = useState<string | null>(null);
+  
   useEffect(() => {
     // Assuming that fetchedData contains the distinctiveness information
     if (fetchedData && fetchedData.length > 0) {
@@ -16,20 +17,12 @@ export default function Verdict({ fetchedData }: { fetchedData: any }) {
       setPopularPrediction(fetchedData[0]);
       setEngagingPrediction(fetchedData[1]);
       console.log("Popular pred: ", popularPrediction);
+
+      setAnimationText( fetchedData[0] && fetchedData[0][1] > 0.4
+        ? `... popular! \n... and it has ${fetchedData[2][12]} likes \n... and ${fetchedData[2][11]} comments`
+        : `... not popular\n ... but it has ${fetchedData[2][12]} likes \n... and ${fetchedData[2][11]} comments`);
     }
   }, [fetchedData]);
-
-  const [animationText, setAnimationText] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (like !== null && comment !== null) {
-      const text = popularPrediction && popularPrediction[1] > 0.4
-        ? `... popular! \n... and it has ${like} likes \n... and ${comment} comments`
-        : `... not popular\n ... but it has ${like} likes \n... and ${comment} comments`;
-
-      setAnimationText(text);
-    }
-  }, [like, comment, popularPrediction]);
 
   return (
     <section>
