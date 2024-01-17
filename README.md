@@ -33,6 +33,8 @@ The datasets contain information about all audio-video recordings of TED Talks u
 * Language that Captivates the Audience
   * https://aclanthology.org/2021.wassa-1.2.pdf
 
+### Want to try out the app yourself?
+[Predicting popularity and analysing language usage of TED talks - The App](https://ted-talks-engagement.vercel.app/)
 
 ### Work-breakdown 
 
@@ -45,7 +47,7 @@ Linguistic features determination | 15h
 Predictions with linguistic features | 10h
 Predictions with BERT | 30h
 Web app developement and deployment | 35h
-Finalisation & Report | 5h
+Finalisation & Report | 10h
 
 ### Results
 
