@@ -9,6 +9,7 @@ export default function Hero({ onFetchedDataUpdate }: { onFetchedDataUpdate: any
 
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState<string | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleButtonClick = (videoUrl: string) => {
     setVideoPlaying(!videoPlaying);
@@ -23,41 +24,53 @@ export default function Hero({ onFetchedDataUpdate }: { onFetchedDataUpdate: any
   const [fetchedData, setFetchedData] = useState(null);
 
   async function handleSearch() {
-    // open the yt video in the modal
-    console.log(linkValue);
-    let videoId = extractVideoId(linkValue);
-    console.log(videoId);
+    setIsLoading(true);
+    try {
+      // open the yt video in the modal
+      console.log(linkValue);
+      let videoId = extractVideoId(linkValue);
+      console.log(videoId);
 
-    if (videoId) {
-      // define the embed url
-      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-      // define the video url
-      const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
-      setCurrentVideoUrl(embedUrl);
-      setVideoPlaying(true);
+      if (videoId) {
+        // define the embed url
+        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        // define the video url
+        const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+        setCurrentVideoUrl(embedUrl);
+        setVideoPlaying(true);
 
-      const formData = new FormData();
-      formData.append("videoUrl", videoUrl);
-      
-      await fetch('http://localhost:5000/predict', {
+        const formData = new FormData();
+        formData.append("videoUrl", videoUrl);
+        
+        const response = await fetch('/api/predict', {
           method: 'POST',
           headers: {
-              'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ videoUrl: videoUrl }),
-      })
-      .then(response => response.json())
-      .then(data => {
-          const prediction = data;
-          // Update UI with the prediction
-          console.log('Prediction:', prediction);
-          prediction.forEach((element: any) => {
-            console.log(element);
-          });
-          onFetchedDataUpdate(prediction);
-      })
-      .catch(error => console.error('Error:', error));
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+        
+        const data = await response.json();
+        const prediction = data;
+        // Update UI with the prediction
+        console.log('Prediction:', prediction);
+        prediction.forEach((element: any) => {
+          console.log(element);
+        });
+        onFetchedDataUpdate(prediction);
+      } else {
+        throw new Error('Invalid YouTube URL');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error analyzing video. Please check the URL and try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const extractVideoId = (url: string): string | null => {
@@ -101,14 +114,25 @@ export default function Hero({ onFetchedDataUpdate }: { onFetchedDataUpdate: any
               aria-label="Add link..."
               value={linkValue}
               onChange={(e) => setLinkValue(e.target.value)}
+              disabled={isLoading}
             />
-            <a
-              className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0"
-              href="#0"
+            <button
+              className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0 flex items-center justify-center"
               onClick={(e) => { e.preventDefault(); handleSearch(); }}
+              disabled={isLoading}
             >
-              Search
-            </a>
+              {isLoading ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Analyzing...
+                </>
+              ) : (
+                'Search'
+              )}
+            </button>
           </div>
         </form>
             </div>

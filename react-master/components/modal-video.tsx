@@ -44,7 +44,7 @@ export default function ModalVideo({
     const formData = new FormData();
     formData.append("videoUrl", defaultVideoUrl);
 
-    await fetch('http://localhost:5000/predict', {
+    await fetch('/api/predict', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

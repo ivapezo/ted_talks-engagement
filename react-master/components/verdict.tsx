@@ -11,11 +11,19 @@ export default function Verdict({ fetchedData }: { fetchedData: any }) {
   useEffect(() => {
     // Assuming that fetchedData contains the distinctiveness information
     if (fetchedData && fetchedData.length > 0) {
-      setComment(fetchedData[2][11]);
-      setLike(fetchedData[2][12]);
-      setPopularPrediction(fetchedData[0]);
-      setEngagingPrediction(fetchedData[1]);
-      console.log("Popular pred: ", popularPrediction);
+      try {
+        setComment(fetchedData[2][11] || 0);
+        setLike(fetchedData[2][12] || 0);
+        setPopularPrediction(fetchedData[0] || [0, 0]);
+        setEngagingPrediction(fetchedData[1] || [0, 0]);
+        console.log("Popular pred: ", popularPrediction);
+      } catch (error) {
+        console.error('Error processing prediction data:', error);
+        setComment(0);
+        setLike(0);
+        setPopularPrediction([0, 0]);
+        setEngagingPrediction([0, 0]);
+      }
     }
   }, [fetchedData]);
 
