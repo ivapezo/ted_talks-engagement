@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "canvas-confetti": "^1.9.2",
     "colormap": "^2.3.2",
     "d3-scale-chromatic": "^3.0.0",
