@@ -148,11 +148,11 @@ def predict():
         engagement = model_engagement.predict_proba(features_array)
         
         all_features = [int(f) for f in all_features]
-        return jsonify({
-            'popularity': popularity[0].tolist(),
-            'engagement': engagement[0].tolist(),
-            'features': all_features
-        })
+        return[
+             popularity[0].tolist(),
+             engagement[0].tolist(),
+             all_features
+        ]
 
     except Exception as e:
         logger.error(f"Error in predict endpoint: {str(e)}")
@@ -196,7 +196,5 @@ def get_features(video_url):
         logger.error(f"Error extracting features: {str(e)}")
         return None
 
-# For local development
-if __name__ == '__main__':
-    logger.info("Starting Flask application")
-    app.run(port=5000)
+# Add Vercel-specific handler
+app = app.wsgi_app
