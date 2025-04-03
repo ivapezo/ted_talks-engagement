@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+// Get the API URL from environment variables, with fallbacks for different environments
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 
+                (process.env.NODE_ENV === 'production' 
+                  ? 'ted-talks-engagement-backend.vercel.app'
+                  : 'http://localhost:5000');
 
 export async function POST(request: Request) {
   try {
@@ -23,6 +27,8 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    console.log(`Forwarding request to ${API_URL}/predict with videoUrl: ${videoUrl}`);
 
     // Forward the request to the Flask backend
     const response = await fetch(`${API_URL}/predict`, {
