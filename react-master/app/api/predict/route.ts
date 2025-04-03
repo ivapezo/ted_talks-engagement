@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 // Get the API URL from environment variables, with fallbacks for different environments
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 
                 (process.env.NODE_ENV === 'production' 
-                  ? 'ted-talks-engagement-backend.vercel.app'
+                  ? 'https://ted-talks-engagement-backend.vercel.app'
                   : 'http://localhost:5000');
 
 export async function POST(request: Request) {
