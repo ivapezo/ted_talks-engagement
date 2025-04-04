@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "react-master/app/api/index.py",
+      "src": "react-master/app/api/predict.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/api",
-      "dest": "react-master/app/api/index.py"
+      "src": "react-master/app/api/predict",
+      "dest": "react-master/app/api/predict.py"
     }
   ]
 } 
