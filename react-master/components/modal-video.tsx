@@ -44,24 +44,34 @@ export default function ModalVideo({
     const formData = new FormData();
     formData.append("videoUrl", defaultVideoUrl);
 
-    await fetch('/api/predict', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ videoUrl: defaultVideoUrl }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        const prediction = data;
-        // Update UI with the prediction
-        console.log('Prediction:', prediction);
-        prediction.forEach((element: any) => {
-          console.log(element);
-        });
-        onFetchedDataUpdate(prediction);
-    })
-    .catch(error => console.error('Error:', error));
+    try {
+      console.log('Sending request to /api/predict with videoUrl:', defaultVideoUrl);
+      
+      const response = await fetch('/api/predict', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ videoUrl: defaultVideoUrl }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const prediction = data;
+      // Update UI with the prediction
+      console.log('Prediction:', prediction);
+      prediction.forEach((element: any) => {
+        console.log(element);
+      });
+      onFetchedDataUpdate(prediction);
+    } catch (error) {
+      console.error('Error:', error);
+      alert(`Error analyzing video: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   };
 
   return (

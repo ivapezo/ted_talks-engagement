@@ -3,7 +3,7 @@
 import VideoThumb from '../../data/workfile-1.png'
 import ModalVideo from '@/components/modal-video'
 import React, { useState } from 'react'
-
+import { NextRequest } from 'next/server';
 
 export default function Hero({ onFetchedDataUpdate }: { onFetchedDataUpdate: any }) {
 
@@ -42,16 +42,17 @@ export default function Hero({ onFetchedDataUpdate }: { onFetchedDataUpdate: any
         const formData = new FormData();
         formData.append("videoUrl", videoUrl);
         
+        console.log('Sending request to /api/predict with videoUrl:', videoUrl);
+
         const response = await fetch('/api/predict', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ videoUrl: videoUrl }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ videoUrl }),
         });
         
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          const errorData = await response.json();
+          throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
@@ -67,7 +68,7 @@ export default function Hero({ onFetchedDataUpdate }: { onFetchedDataUpdate: any
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error analyzing video. Please check the URL and try again.');
+      alert(`Error analyzing video: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setIsLoading(false);
     }
